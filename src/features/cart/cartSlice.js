@@ -2,7 +2,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
-const url = '/api/react-useReducer-cart-project'; // Using the proxy URL
+// const url = '/api/react-useReducer-cart-project'; // Using the proxy URL
+// const url = "https://course-api.com/react-useReducer-cart-project";
+
+// const url =
+//   process.env.NODE_ENV === "production"
+//     ? "https://course-api.com/react-useReducer-cart-project"
+//     : "/api/react-useReducer-cart-project";
+
+const URL = import.meta.env.VITE_API_URL;
+
 
 const initialState = {
   cartItems: [],
@@ -19,7 +28,7 @@ export const getCartItems = createAsyncThunk(
       // console.log(thunkAPI);
       // console.log(thunkAPI.getState());
       // thunkAPI.dispatch(openModal());
-      const response = await axios(url);
+      const response = await axios(URL);
 
       return response.data;
     } catch (error) {
